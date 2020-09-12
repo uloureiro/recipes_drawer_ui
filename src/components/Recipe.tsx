@@ -36,21 +36,24 @@ const useStyles = makeStyles((theme: Theme) => ({
 const renderTags = (tags: any) => {
   if (tags) {
     return (
-      <div style={ { marginBottom: 10, marginTop: 10 } }>
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="center"
-          spacing={1}
-        >
-          <Typography variant="body2">Tags: </Typography>{tags.map((tag: any, index: number) => { return (
-            <Grid item key={index}>
-              <Chip variant="outlined" size="small" label={tag}/> 
-            </Grid>
+      <Typography variant="body2" component="div">
+        <div style={ { marginBottom: 10, marginTop: 15, marginLeft: 4 } }>
+          <Grid
+            container
+            direction="row"
+            alignItems="center"
+            justify="flex-start"
+            spacing={1}
+          >
+            Tags: {tags.map((tag: any, index: number) => {
+            return (
+              <Grid item key={index}>
+                <Chip variant="outlined" size="small" label={tag}/> 
+              </Grid>
           )})}
-        </Grid>
-      </div>
+          </Grid>
+        </div>
+      </Typography>
     )
   }
 }
@@ -86,11 +89,11 @@ const Recipe = (props: RecipeProps) => {
       </CardContent>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p" align="justify">
+          <Typography variant="body2" color="textSecondary" component="div" align="justify">
             <ReactMarkdown source={props.description} linkTarget="_blank"/>
           </Typography>
           {props.chef != null &&
-            <Typography variant="body2" align="left">
+            <Typography variant="body2" align="left" component="div">
               Signed by: {props.chef}
             </Typography>
           }
