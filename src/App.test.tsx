@@ -1,6 +1,6 @@
-import React from 'react';
-import { act, render } from '@testing-library/react';
-import App from './App';
+import React from 'react'
+import { act, render } from '@testing-library/react'
+import App from './App'
 import axios from 'axios'
 import apiSuccessDataSingle from './api/data/api-success-single.json'
 
@@ -14,27 +14,27 @@ describe('Recipe Drawer', () => {
   
   it('renders toolbar', async () => {
     await act(async () => {
-      renderResult = render(<App />);
+      renderResult = render(<App />)
     })
-    const element = renderResult.container.querySelector('#recipe-toolbar');
-    expect(element).toBeInTheDocument();
+    const element = renderResult.container.querySelector('#recipe-toolbar')
+    expect(element).toBeInTheDocument()
   })
 
   it('renders recipes list', async () => {
     await act(async () => {
-      renderResult = render(<App />);
+      renderResult = render(<App />)
     })
-    const element = renderResult.container.querySelector('#recipe-list');
-    expect(element).toBeInTheDocument();
+    const element = renderResult.container.querySelector('#recipe-list')
+    expect(element).toBeInTheDocument()
   })
 
   it('recipes list has one recipe', async () => {
     await act(async () => {
-      renderResult = render(<App />);
+      renderResult = render(<App />)
     })
 
-    const element = renderResult.container.querySelector('#asdf1234');
-    expect(element).toBeInTheDocument();
+    const element = renderResult.container.querySelector('#asdf1234')
+    expect(element).toBeInTheDocument()
   })
 })
 
