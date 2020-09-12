@@ -34,7 +34,7 @@ const RecipeList = (props: RecipeListProps) => {
   }
 
   return (
-    <Container maxWidth="sm" id="recipe-list">
+    <Container maxWidth="md" id="recipe-list">
       <Grid
       className='recipe-list-container'
       container
