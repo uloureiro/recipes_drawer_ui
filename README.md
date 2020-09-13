@@ -1,44 +1,50 @@
+# Recipes Drawer UI
+
+This application provides an user interface to interact with the recipes data provided by the [Recipes Drawer](https://github.com/uloureiro/recipes_drawer) service.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Setup
+This application has Docker and Docker Compose files to make it easy to get up and running.
 
-In the project directory, you can run:
+First, clone this repo.
 
-### `yarn start`
+**Important:** It is required that you inform Contentful's credentials and configurations. The following set of variables should be informed within the `docker-compose.yml` file:
+```bash
+# docker-compose.yml
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# ...
+    environment:
+      - CONTENTFUL_SPACE_ID=your_contentful_space_id
+      - CONTENTFUL_ENVIRONMENT_ID=your_contentful_environment_id # usually master
+      - CONTENTFUL_DELIVERY_TOKEN=your_contentful_delivery_token
+      - CONTENTFUL_API_URL=contentful_url # usually cdn.contentful.com
+# ...
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Be sure to have [Make](https://www.gnu.org/software/make/) available and then run the following command to see a list of all available commands:
+```bash
+make help
+```
+If you can't use Make, use the desired commands by copying from Makefile.
 
-### `yarn test`
+Build the application images:
+```
+make docker-build
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Boot the containers:
+```
+make docker-up
+```
 
-### `yarn build`
+In your browser, access the application through `http://localhost:3000`.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Notes:
+- This runs in dettached mode, if you want to attach output to console run `docker-compose up`.
+- Docker is mapping the frontend to localhost:3000, and the backend to localhost:9000, so please be sure that you don't have anything already mapped to those ports.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## How to run the test suites
+```
+make docker-test
+```
