@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  recipes_drawer_ui:
+    container_name: recipes-drawer-ui
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - REACT_APP_BASE_URL=http://localhost:9000
+      - CI=true
+    networks:
+      - internal
+  recipes_drawer_backend:
+    container_name: recipes-drawer-backend
+    build: https://github.com/uloureiro/recipes_drawer.git
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 9000 -b '0.0.0.0'"
+    ports:
+      - "9000:9000"
+    networks:
+      - internal
+    environment:
+      - CONTENTFUL_SPACE_ID=
+      - CONTENTFUL_ENVIRONMENT_ID=
+      - CONTENTFUL_DELIVERY_TOKEN=
+      - CONTENTFUL_API_URL=
+
+networks:
+  internal:
+    driver: bridge
